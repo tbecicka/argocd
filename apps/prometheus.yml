@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argo
+  labels:
+    cluster: c3
+    app: prometheus
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/tbecicka/argocd.git
+    targetRevision: HEAD
+    path: prometheus
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus
+  syncPolicy:
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
+    
