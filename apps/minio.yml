@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: minio
   namespace: argo
   labels:
     cluster: c3
-    app: prometheus
+    app: minio
 spec:
   project: default
   source:
     repoURL: https://github.com/tbecicka/argocd.git
     targetRevision: HEAD
-    path: prometheus
+    path: minio
   destination:
     server: https://kubernetes.default.svc
-    namespace: prometheus
+    namespace: minio
   syncPolicy:
     syncOptions:
     - Validate=true
