@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-events
+  namespace: argo
+  labels:
+    cluster: c3
+    app: argo-events
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/tbecicka/argocd.git
+    targetRevision: HEAD
+    path: argo/events
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo
+  syncPolicy:
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
+    
